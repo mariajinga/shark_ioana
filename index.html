@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ioana & Anne Bonny</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', Arial, sans-serif;
+            background: linear-gradient(180deg, #b0e0da 0%, #1d4f48 100%);
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .hero {
+            background: url('background.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(120deg, 
+                rgba(164, 226, 217, 0.9),
+                rgba(255, 255, 255, 0.9),
+                rgba(164, 226, 217, 0.9));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: titleGlow 3s ease-in-out infinite;
+            position: relative;
+            padding: 20px;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .hero h1::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(164, 226, 217, 0.3);
+            border-radius: 10px;
+            animation: borderPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 10px rgba(164, 226, 217, 0.5),
+                    0 0 20px rgba(164, 226, 217, 0.3),
+                    0 0 30px rgba(164, 226, 217, 0.2);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px rgba(164, 226, 217, 0.7),
+                    0 0 40px rgba(164, 226, 217, 0.5),
+                    0 0 60px rgba(164, 226, 217, 0.3);
+            }
+        }
+        @keyframes borderPulse {
+            0%, 100% {
+                border-color: rgba(164, 226, 217, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                border-color: rgba(164, 226, 217, 0.7);
+                transform: scale(1.02);
+            }
+        }
+        .hero h2 {
+            font-size: 3.2em;
+            color: cyan;
+            font-weight: 600;
+        }
+        .description img {
+            max-width: 80%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .video {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .video video {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+        .location iframe {
+            width: 90%;
+            height: 400px;
+            margin-top: 20px;
+        }
+        button {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(164, 226, 217, 0.5);
+            padding: 15px 40px;
+            font-size: 1.2em;
+            margin: 20px 10px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(164, 226, 217, 0.3),
+                            0 0 10px rgba(164, 226, 217, 0.3),
+                            0 0 15px rgba(164, 226, 217, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(164, 226, 217, 0.5),
+                            0 0 35px rgba(164, 226, 217, 0.4),
+                            0 0 50px rgba(164, 226, 217, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(164, 226, 217, 0.3),
+                            0 0 10px rgba(164, 226, 217, 0.3),
+                            0 0 15px rgba(164, 226, 217, 0.3);
+            }
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            border-color: #a4e2d9;
+            animation: glow-hover 1.5s infinite;
+        }
+
+        @keyframes glow-hover {
+            0% {
+                box-shadow: 0 0 10px rgba(164, 226, 217, 0.5),
+                            0 0 20px rgba(164, 226, 217, 0.4),
+                            0 0 30px rgba(164, 226, 217, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(164, 226, 217, 0.7),
+                            0 0 45px rgba(164, 226, 217, 0.5),
+                            0 0 65px rgba(164, 226, 217, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(164, 226, 217, 0.5),
+                            0 0 20px rgba(164, 226, 217, 0.4),
+                            0 0 30px rgba(164, 226, 217, 0.3);
+            }
+        }
+
+        .track-button {
+            border-color: rgba(164, 216, 226, 0.5);
+            animation: glow-blue 3s infinite;
+        }
+
+        @keyframes glow-blue {
+            0% {
+                box-shadow: 0 0 5px rgba(164, 216, 226, 0.3),
+                            0 0 10px rgba(164, 216, 226, 0.3),
+                            0 0 15px rgba(164, 216, 226, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(164, 216, 226, 0.5),
+                            0 0 35px rgba(164, 216, 226, 0.4),
+                            0 0 50px rgba(164, 216, 226, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(164, 216, 226, 0.3),
+                            0 0 10px rgba(164, 216, 226, 0.3),
+                            0 0 15px rgba(164, 216, 226, 0.3);
+            }
+        }
+
+        .track-button:hover {
+            animation: glow-blue-hover 1.5s infinite;
+        }
+
+        @keyframes glow-blue-hover {
+            0% {
+                box-shadow: 0 0 10px rgba(164, 216, 226, 0.5),
+                            0 0 20px rgba(164, 216, 226, 0.4),
+                            0 0 30px rgba(164, 216, 226, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(164, 216, 226, 0.7),
+                            0 0 45px rgba(164, 216, 226, 0.5),
+                            0 0 65px rgba(164, 216, 226, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(164, 216, 226, 0.5),
+                            0 0 20px rgba(164, 216, 226, 0.4),
+                            0 0 30px rgba(164, 216, 226, 0.3);
+            }
+        }
+
+        .birthday-button {
+            border-color: rgba(174, 220, 212, 0.5);
+        }
+
+        .birthday-button:active::before {
+            background: radial-gradient(
+                circle,
+                rgba(174, 220, 212, 0.3) 0%,
+                transparent 70%
+            );
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            border: 1px solid rgba(164, 226, 217, 0.2);
+            box-shadow: 0 8px 32px rgba(164, 226, 217, 0.1);
+        }
+        
+        .popup-title {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 0;
+            margin-top: 0;
+            z-index: 2;
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            background: linear-gradient(45deg, #a4e2d9, #1d4f48);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .popup-content {
+            color: white;
+            overflow-y: auto;
+            max-height: calc(85vh - 180px);
+            padding: 0 30px 20px;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.1em;
+            letter-spacing: 0.3px;
+        }
+        
+        .popup-content p {
+            margin-bottom: 25px;
+            white-space: pre-line;
+            padding-right: 10px;
+            text-indent: 2em;
+        }
+        
+        .popup-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .popup-content strong {
+            color: #a4e2d9;
+            font-weight: 600;
+        }
+        
+        .close {
+            position: fixed;
+            top: 25px;
+            right: 35px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #a4e2d9;
+            transition: transform 0.3s ease;
+            z-index: 3;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+        }
+        
+        .close:hover {
+            transform: rotate(90deg);
+            background: rgba(0, 0, 0, 1);
+        }
+        .description {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .special-message {
+            font-size: 2.5em;
+            background: linear-gradient(120deg, #ffffff, #1d4f48, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .special-message::before,
+        .special-message::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8em;
+            opacity: 0.8;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .special-message::before {
+            left: -40px;
+        }
+
+        .special-message::after {
+            right: -40px;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+        .message-content {
+            text-align: left;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .message-content p {
+            margin-bottom: 20px;
+        }
+        .message-content strong {
+            color:  #a4e2d9;
+        }
+        .shark-gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
+        
+        .shark-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            height: calc(50% - 10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .shark-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .shark-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .shark-image:hover img {
+            transform: scale(1.05);
+        }
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto 20px;
+            padding: 20px;
+            height: 600px;
+        }
+        
+        .photos-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+        
+        .video-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        /* Stiluri pentru WebKit (Chrome, Safari, etc.) */
+        .popup-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .popup-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #a4e2d9, #1d4f48);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .popup-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b0e0da, #246159);
+        }
+
+        .location {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>A silent traveler of the sea is calling you.</h1>
+    </section>
+    
+    <section class="description">
+        <p class="special-message">Siiiiis! ✨</p>
+        
+        <div class="message-content">
+            <p>Azi e ziua ta specială, ziua în care pășești oficial în lumea adulților! Și pentru că 18 ani sunt un moment unic, am vrut să-ți fac un cadou pe măsură – ceea neașteptat, dar care sper să-ți umple inima de bucurie: <strong>propriul tău rechin!</strong> 🦈🤍            </p>
+            
+            <p>Nu, nu trebuie să-ți faci griji că va ocupa loc pe raft lângă acvariul din sufragerie. În schimb, vei putea urmări aventurile lui <strong>Anne Bonny</strong>, o femelă de rechin alb, care își petrece timpul explorând apele din largul coastelor Outer Banks, Carolina de Nord. Se află chiar în aceeași zonă unde a fost și anul trecut pe vremea asta! Cei care au montat GPS-ul pe ea au întâlnit-o pentru prima dată pe <strong>21 aprilie 2023</strong> și, de atunci, au urmărit-o pe o distanță de aproape <strong>9.600 km</strong>.</p>
+            
+            <p>Acum e rândul <strong>tău</strong> să o urmărești! 📍 Am creat acest website special pentru tine, ca să ai mereu la îndemână imagini, videoclipuri și locația ei în timp real. Poate Anne Bonny îți va aminti de aventurile pe care trebuie să le trăiești și tu, fără frică, cu curaj și cu dorința de a explora lumea.</p>
+            
+            <p>Este adolescentă, la fel ca și tine, deci sunt sigură că o să vă înțelegeți de minune! 😉</p>
+        </div>
+        
+        <div class="media-container">
+            <div class="photos-column">
+                <div class="shark-image">
+                    <img src="anne1.jpg" alt="Anne Bonny">
+                </div>
+                <div class="shark-image">
+                    <img src="anne2.jpg" alt="Anne Bonny">
+                </div>
+            </div>
+            <div class="video-container">
+                <video controls>
+                    <source src="shark-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    
+    <section class="location">
+        <div class="buttons-container">
+            <button onclick="window.open('https://www.ocearch.org/tracker/detail/anne-bonny', '_blank')" class="track-button">
+                Track Your Shark
+            </button>
+            <button id="birthday-btn" class="birthday-button">Happy Birthday</button>
+        </div>
+    </section>
+    
+    <div id="popup" class="popup">
+        <span class="close">&times;</span>
+        <h3 class="popup-title">Happy Birthday, sister! 🤍✨</h3>
+        <div class="popup-content">
+            <p> Ai împlinit 18 ani, dar pentru mine vei rămâne mereu fetița cu ochi negri ca abisul și gropițele identice de lângă tâmple, care mă privea cu admirație și nerăbdare, gata să pornim împreună în orice aventură. Îți amintești toate lumile pe care le-am creat împreună? Toate poveștile pe care le-am trăit ca și cum ar fi fost reale? Dacă aș avea șansa, aș da timpul înapoi fără să clipesc, doar ca să ne mai jucăm de-a sfârșitul lumii, de-a naufragiații, de-a spionii sau de-a inginerii care construiesc avioane. Aș vrea să mai alergăm prin curte, să mai avem iglu-ul nostru cu etaj, să reconstruim orașul din jucării mici, inventând scenarii horror care ne fascinau (până trebuia să le ascundem când venea preotul – sau cel puțin așa credeam noi). Aș vrea să ne mai retragem în castelele noastre roz și gri, înconjurate de pisici, să mai patinăm pe role, să mai mergem cu sania, să ne plimbăm cu căruța sau bobul, să ne machiem una pe cealaltă și să ne dăm sfaturi la shopping. Toate filmele, serialele, mesele împărțite, nopțile dormite împreună... toate sunt parte din mine.  
+                
+                Datorită ție mi-am format imaginația, iar copilul meu interior a rămas viu pentru că l-ai întreținut tu, așa cum nimeni altcineva nu ar fi putut. Cu tine am fost cu adevărat fericită, pentru că tu ai fost fericirea mea. Lângă tine am învățat să râd, dar și să plâng, și am înțeles că aș face orice să nu te pierd (promit că nu se va mai întâmpla să sari între două perne cu fundul ca să rămâi fără aer).  
+                
+                Când mă uit la tine acum, îmi dau seama cât de frumos ai crescut și cât de repede ai devenit femeia puternică, elegantă și plină de farmec care ești astăzi. Ai o aură magnetică, o energie dark feminine care te face imposibil de ignorat. Privirea ta, părul tău ca noaptea și grația naturală te fac să arăți ca o zeiță ce și-a păstrat esența copilăriei – aceeași esență care m-a făcut să te iubesc din prima clipă (știu, romantic rău). Dar dincolo de frumusețea ta evidentă, ceea ce mă face să te admir cel mai mult este spiritul tău. Ești inteligentă, creativă, ambițioasă, ai un suflet uriaș și o putere pe care încă nici măcar nu o conștientizezi pe deplin. Ai un potențial uriaș, iar eu știu că vei ajunge departe, mult mai departe decât îți poți imagina acum.  
+                
+                Îți mulțumesc că ești sora mea și că ai ales să vii în viața mea. Când mă gândesc la cel mai frumos cadou pe care l-am primit vreodată, mă gândesc la tine. Tu ai fost dorința cea mai de preț care mi s-a împlinit.  
+                
+                Te iubesc enorm și abia aștept să fii mai aproape de mine, să recuperăm tot timpul pierdut și să continuăm să ne trăim viața așa cum ne place nouă – împreună. La mulți ani, sufletul meu pereche în forma unei surori!</p>
+        </div>
+    </div>
+    
+    <div id="fullscreen-overlay" class="fullscreen-overlay">
+        <img id="fullscreen-image" class="fullscreen-image" src="" alt="Fullscreen Image">
+    </div>
+    
+    <script>
+        document.getElementById('birthday-btn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'block';
+        });
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+        
+        // Fullscreen functionality
+        const images = document.querySelectorAll('.shark-image img');
+        const overlay = document.getElementById('fullscreen-overlay');
+        const fullscreenImage = document.getElementById('fullscreen-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                fullscreenImage.src = this.src;
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        overlay.addEventListener('click', function() {
+            this.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
