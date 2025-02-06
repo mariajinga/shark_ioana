@@ -124,7 +124,7 @@
             color: white;
             border: 2px solid rgba(164, 226, 217, 0.5);
             padding: 15px 40px;
-            font-size: 1.2em;
+            font-size: 1em;
             margin: 20px 10px;
             cursor: pointer;
             border-radius: 30px;
@@ -596,9 +596,11 @@
     <script>
         document.getElementById('birthday-btn').addEventListener('click', function() {
             document.getElementById('popup').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         });
         document.querySelector('.close').addEventListener('click', function() {
             document.getElementById('popup').style.display = 'none';
+            document.body.style.overflow = 'auto';
         });
         
         // Fullscreen functionality
